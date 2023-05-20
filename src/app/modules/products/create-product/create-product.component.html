@@ -1,1 +1,110 @@
-<p>create-product works!</p>
+<div class="container">
+    <h3>Crear producto</h3>
+    <hr>
+    <div class="container-form">
+        <form [formGroup]="frmProduct" class="needs-validation" novalidate>
+            <div class="row margin-rows">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Nombre</label>
+                    <input 
+                        class="form-control"
+                        type="text"
+                        formControlName="name"
+                        [ngClass]="{'is-invalid': (getNameField?.touched || getNameField?.dirty) && getNameField?.errors }">
+                    <div *ngIf="(getNameField?.touched || getNameField?.dirty) && getNameField?.errors" class="invalid-feedback">
+                        <div *ngIf="getNameField?.hasError('required')">
+                          El campo nombre es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Precio</label>
+                    <input 
+                        class="form-control"
+                        type="number"
+                        formControlName="price"
+                        [ngClass]="{'is-invalid': (getPriceField?.touched || getPriceField?.dirty) && getPriceField?.errors }">
+                    <div *ngIf="getPriceField?.touched && getPriceField?.errors" class="invalid-feedback">
+                        <div *ngIf="getPriceField?.hasError('required')">
+                          El campo precio es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Disponibilidad</label>
+                    <input 
+                        class="form-control"
+                        type="number"
+                        formControlName="quantity"
+                        [ngClass]="{'is-invalid': (getQuantityField?.touched || getQuantityField?.dirty) && getQuantityField?.errors }">
+                    <div *ngIf="getQuantityField?.touched && getQuantityField?.errors" class="invalid-feedback">
+                        <div *ngIf="getQuantityField?.hasError('required')">
+                          El campo disponibilidad es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label" [ngClass]="{'required-label': !codeProduct}">Seleccionar imagenes</label>
+                    <input 
+                        class="form-control"
+                        type="file"
+                        formControlName="images"
+                        [ngClass]="{'is-invalid': (getImagesField?.touched || getImagesField?.dirty) && getImagesField?.errors }"
+                        multiple
+                        (change)="onFileChange($event)"
+                        accept="image/png, image/jpeg, images/jpg">
+                    <div *ngIf="getImagesField?.touched && getImagesField?.errors" class="invalid-feedback">
+                        <div *ngIf="getImagesField?.hasError('required')">
+                          Debe selecionar por lo menos una imagen
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" formControlName="description"></textarea>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label">Seleccione las categorias</label>
+                    <div class="container-categories">
+                        <div class="form-check" *ngFor="let category of lstCategories">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="category.checked" [ngModelOptions]="{standalone: true}">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{category.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows" *ngIf="codeProduct">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div id="carouselExample" class="carousel slide container-slider">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active" *ngFor="let image of lstImages">
+                            <img [src]="image.url">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-button">
+                    <button class="btn btn-info color-text" (click)="saveProduct()">{{nameBtn}}</button>
+                    <button class="btn btn-danger color-text" (click)="cancel()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <app-alert [alert]="alert"></app-alert>
+</div>

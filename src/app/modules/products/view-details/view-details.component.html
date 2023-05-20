@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row container-form">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div id="carouselExample" class="carousel slide full-height">
+                <div class="carousel-inner full-height">
+                  <div class="carousel-item active full-height" *ngFor="let images of product.imagenes">
+                    <img [src]="images.url" class="d-block w-100">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container-information">
+            <div class="container-title">
+                <h3>{{product.nombre}}</h3>
+                <button class="btn btn-danger btn-sm"
+                        placement="bottom" 
+                        ngbTooltip="Añadir a favoritos"
+                        (click)="addFavorites(product)">
+                        <i class="bi bi-bag-heart"></i>
+                </button>
+            </div>
+            <h2 class="color">{{product.precio | currency}}</h2>
+            <h5 class="color container-send">
+              <i class="bi bi-truck"></i>
+              Envío gratis
+            </h5>
+            <h6>Cantidad: 1 unidad de ({{product.disponibilidad}} disponibles)</h6>
+            <button class="btn btn-primary btn-buy">Comprar ahora</button>
+            <div class="container-description">
+              <h4>Descripción</h4>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta tempore fuga, aliquam eum sequi magnam doloribus eaque dicta temporibus aut doloremque, error officia dolorum amet recusandae voluptatum qui libero. Numquam!
+              </p>
+            </div>
+        </div>
+    </div>
+</div>

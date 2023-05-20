@@ -1,0 +1,40 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+      <div class="col-md-3 mb-2 mb-md-0 container-logo">
+        <img src="assets/images/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+        <h4>Unimarket</h4>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+
+        <!-- Menu general para los usuarios -->
+
+        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="!tokenService.isLogged() || isUser()">Inicio</a></li>
+        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="!tokenService.isLogged()">Productos</a></li>
+
+        <!-- Menu para los usuarios -->
+
+        <li><a routerLink="/pages/products/list-products-user" class="nav-link px-2 item-menu" *ngIf="isUser()">Mis productos</a></li>
+        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="isUser()">Mis compras</a></li>
+        <li><a routerLink="/pages/products/favorites" class="nav-link px-2 item-menu" *ngIf="isUser()">Favoritos</a></li>
+
+        <!-- Menu para los moderadores -->
+
+        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="isModerator()">Aprobar productos</a></li>
+
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-info me-2" (click)="goToLogin()" *ngIf="!tokenService.isLogged()">Login</button>
+        <button type="button" class="btn btn-info color-text" (click)="goToRegister()" *ngIf="!tokenService.isLogged()">Registrarse</button>
+
+        <div class="dropdown" *ngIf="tokenService.isLogged()">
+          <img class="img-user" src="assets/images/user.png" data-bs-toggle="dropdown" *ngIf="isUser()">
+          <img class="img-user" src="assets/images/moderator.png" data-bs-toggle="dropdown" *ngIf="isModerator()">
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+  </div>

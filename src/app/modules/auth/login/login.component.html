@@ -6,61 +6,55 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form [formGroup]="frmLogin">  
+          <form [formGroup]="frmLogin"
+                class="needs-validation"
+                novalidate>  
             <div class="divider d-flex align-items-center my-4">
               <h2>Login</h2>
             </div>
   
-            <!-- Email input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Email o nombre de usuario</label>
-                <input type="email" id="form3Example3" class="form-control form-control-lg"/>
+                <label class="form-label">Email o nombre de usuario</label>
+                <input type="text" 
+                    class="form-control form-control-lg"
+                    formControlName="user"
+                    required
+                    [ngClass]="{'is-invalid': getUserField?.touched && getUserField?.errors }"/>
+                <div *ngIf="getUserField?.touched && getUserField?.errors" class="invalid-feedback">
+                    <div *ngIf="getUserField?.hasError('required')">
+                      El campo Email o nombre de usuario es requerido
+                    </div>
+                    <div *ngIf="getUserField?.hasError('email')">
+                      Debe ingresar un correo válido
+                    </div>
+                </div>
             </div>
-  
-            <!-- Password input -->
+
             <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4">Contraseña</label>
-                <input type="password" id="form3Example4" class="form-control form-control-lg"/>
+                <label class="form-label">Contraseña</label>
+                <input type="password"
+                      class="form-control form-control-lg"
+                      formControlName="password"
+                      required
+                      [ngClass]="{'is-invalid': getPasswordField?.touched && getPasswordField?.errors }"/>
+                <div *ngIf="getPasswordField?.touched && getPasswordField?.errors" class="invalid-feedback">
+                    El campo Contraseña es requerido
+                </div>
             </div>
   
             <div class="text-center text-lg-start mt-4 pt-2">
               <div class="container-buttons">
-                <button type="button" class="btn btn-primary btn-lg">Login</button>
+                <button type="button" class="btn btn-primary btn-lg" (click)="login()">Login</button>
               </div>
               <div class="container-buttons">
                 <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta?
-                    <a href="#!" class="link-danger">Registrate</a>
+                    <a routerLink="/auth/register-user" class="link-danger">Registrate</a>
                   </p>
               </div>
             </div>
-  
           </form>
         </div>
       </div>
     </div>
-    <div
-      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-      <!-- Copyright -->
-      <div class="text-white mb-3 mb-md-0">
-        Copyright © 2020. All rights reserved.
-      </div>
-      <!-- Copyright -->
-  
-      <!-- Right -->
-      <div>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="#!" class="text-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-      <!-- Right -->
-    </div>
+    <app-alert [alert]="alert"></app-alert>
   </section>
