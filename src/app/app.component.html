@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<div *ngIf="!isLogged; then nologged else logged"></div>
+<ng-template #nologged>
+<div class="text-end"><router-outlet></router-outlet>
+    <button type="button" routerLink="/login" class="btn btn-outline-light
+me-2">Login</button>
+<button type="button" routerLink="/registro" class="btn btn-warning">Sign-up</button>
+</div>
+</ng-template>
+<ng-template #logged>
+<div class="text-end">
+<label class="me-3" >Hola {{email}}</label>
+<button type="button" (click)="logout()" class="btn btn-warning">Logout</button>
+</div>
+</ng-template>
