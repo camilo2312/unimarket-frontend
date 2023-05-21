@@ -10,6 +10,7 @@ import { ListProductsModeratorComponent } from './list-products-moderator/list-p
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ListFavoritesComponent } from './list-favorites/list-favorites.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { ApproveRejectProductsComponent } from './approve-reject-products/approve-reject-products.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     ListProductsUsersComponent,
     ListProductsModeratorComponent,
     ViewDetailsComponent,
-    ListFavoritesComponent
+    ListFavoritesComponent,
+    ApproveRejectProductsComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,6 @@ import { TokenService } from 'src/app/services/services-http/token.service';
 })
 export class ListProductsUsersComponent implements OnInit, OnDestroy {
 
-  name: string | null | undefined;
   lstProducts = new Array<ProductGetDTO>();
   private codeUser = '';
   destroy$ = new Subject<boolean>();
@@ -29,7 +28,6 @@ export class ListProductsUsersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.name = localStorage.getItem('user');
     this.codeUser = this.tokenService.getCodeUser();
     this.getData();
   }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Estado } from 'src/app/model/Estado';
 import { MensajeDTO } from 'src/app/model/MensajeDTO';
 import { ProductDTO } from 'src/app/model/ProductDTO';
 import { environment } from 'src/environments/environment';
@@ -49,4 +50,13 @@ export class ProductService {
     return this.http.get<MensajeDTO>(urlGetFavoriteProducts);
   }
 
+  getProductsModerator(): Observable<MensajeDTO> {
+    const urlGetProductsModerator = `${this.urlApi}allProductosModerator`;
+    return this.http.get<MensajeDTO>(urlGetProductsModerator);
+  }
+
+  updateProductState(codeProduct: number, state: Estado): Observable<MensajeDTO> {
+    const urlUpdateState = `${this.urlApi}actualizarEstado/${codeProduct}/${Estado[state]}`;
+    return this.http.get<MensajeDTO>(urlUpdateState);
+  }
 }

@@ -1,0 +1,48 @@
+<div class="container">
+    <h3>Aprobar o rechazar productos</h3>
+    <hr>
+    <div class="container-form">
+        <table class="table table-striped">
+            <thead>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th class="text-right">Precio</th>
+                <th class="text-center">Imagen</th>
+                <th class="text-center">Fecha publicación</th>
+                <th class="text-center">Fecha límite</th>
+                <th class="text-center">Ver detalle</th>
+                <th class="text-center">Acciones</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of lstProducts"> 
+                    <td>{{product.codigo}}</td>
+                    <td>{{product.nombre}}</td>
+                    <td class="text-right">{{product.precio | currency}}</td>
+                    <td class="container-img">
+                        <img [src]="product.imagenes[0]?.url" alt="">
+                    </td>
+                    <td class="text-center">{{product.fechaPublicacion}}</td>
+                    <td class="text-center">{{product.fechaLimite}}</td>
+                    <td>
+                        <div class="container-view">
+                            <button class="btn btn-outline-primary btn-sm" (click)="viewDetails(product)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container-buttons-table">
+                            <button class="btn btn-outline-success btn-sm" (click)="approveProduct(product)">
+                                Aprobar
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="rejectProduct(product)">
+                                Rechazar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-alert [alert]="alert"></app-alert>
+</div>

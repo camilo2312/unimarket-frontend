@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isUser()">
     <div class="row container-form">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <div id="carouselExample" class="carousel slide full-height">
@@ -42,4 +42,49 @@
             </div>
         </div>
     </div>
+    <app-alert [alert]="alert"></app-alert>
+</div>
+
+<div class="container" *ngIf="isModerator()">
+  <div class="row container-form">
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <div id="carouselExample" class="carousel slide full-height">
+              <div class="carousel-inner full-height">
+                <div class="carousel-item active full-height" *ngFor="let images of product.imagenes">
+                  <img [src]="images.url" class="d-block w-100">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container-information">
+          <div class="container-title">
+              <h3>{{product.nombre}}</h3>
+          </div>
+          <h5><span>Precio:</span> {{product.precio | currency}}</h5>
+          <h5><span>Disponibilidad:</span> {{product.disponibilidad}}</h5>
+          <h5><span>Fecha publicación:</span> {{product.fechaPublicacion | date}}</h5>
+          <h5><span>Fecha publicación:</span> {{product.fechaLimite | date}}</h5>
+          <h5><span>Vendedor:</span> {{user?.nombreCompleto}}</h5>
+          <div class="container-description">
+            <h5>Descripción</h5>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta tempore fuga, aliquam eum sequi magnam doloribus eaque dicta temporibus aut doloremque, error officia dolorum amet recusandae voluptatum qui libero. Numquam!
+            </p>
+          </div>
+          <div class="container-btn-return">
+            <button class="btn btn-primary" (click)="returnPage()">
+              <i class="bi bi-arrow-return-left"></i>
+              Volver
+            </button>
+          </div>
+      </div>
+  </div>
 </div>

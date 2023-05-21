@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Alert } from 'src/app/model/Alert';
 import { ProductGetDTO } from 'src/app/model/ProductGetDTO';
+import { UserGetDTO } from 'src/app/model/UserGetDTO';
 import { FavoriteProductService } from 'src/app/services/services-http/favorite-product.service';
 import { ProductService } from 'src/app/services/services-http/product.service';
 import { TokenService } from 'src/app/services/services-http/token.service';
+import { UserService } from 'src/app/services/services-http/user.service';
 
 @Component({
   selector: 'app-view-details',
@@ -18,12 +20,15 @@ export class ViewDetailsComponent implements OnInit {
   product!: ProductGetDTO;
   destroy$ = new Subject<boolean>();
   alert!: Alert | null;
+  user!: UserGetDTO | null;
 
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService,
-    private favoriteService: FavoriteProductService
+    private favoriteService: FavoriteProductService,
+    private userService: UserService,
+    private route: Router
   ) {}
  
   ngOnInit(): void {
@@ -38,12 +43,25 @@ export class ViewDetailsComponent implements OnInit {
       next: data => {
         if (data) {          
           this.product = data.respuesta;
+          this.getUser(this.product.vendedor);
         }
       },
       error: error => {
 
       }
     })
+  }
+
+  private getUser(code: string) {
+    this.userService.getUser(code).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: data => {
+        if (data) {
+          this.user = data.respuesta;
+        }
+      }
+    });
   }
 
   addFavorites(product: ProductGetDTO) {
@@ -66,5 +84,19 @@ export class ViewDetailsComponent implements OnInit {
 
       }
     });
+  }
+
+  isUser() {
+    const role = this.tokenService.getRole();
+    return role === 'CLIENTE';
+  }
+
+  isModerator() {
+    const role = this.tokenService.getRole();
+    return role === 'MODERADOR';
+  }
+
+  returnPage() {
+    this.route.navigate(['/pages/products/approve-reject']);
   }
 }

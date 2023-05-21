@@ -29,7 +29,11 @@ export class TokenService {
 
   public login(token:string){
     this.setToken(token);
-    this.router.navigate(['/pages/home']);
+    if (this.getRole() === 'CLIENTE') {
+      this.router.navigate(['/pages/home']);
+    } else {
+      this.router.navigate(['/pages/products/approve-reject']);
+    }
   }
 
   public logout() {

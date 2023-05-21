@@ -39,4 +39,8 @@ export class HeaderComponent implements OnInit {
     const role = this.tokenService.getRole();
     return this.tokenService.isLogged() && role === 'MODERADOR';
   }
+
+  getEmail(): string {
+    return this.tokenService.getEmail();
+  }
 }

@@ -18,4 +18,9 @@ export class UserService {
     const urlCreateUser = `${this.urlApi}`;
     return this.http.post<MensajeDTO>(urlCreateUser.substring(0, urlCreateUser.length - 1), user);
   }
+
+  getUser(code: string): Observable<MensajeDTO> {
+    const urlGetUser = `${this.urlApi}${code}`;
+    return this.http.get<MensajeDTO>(urlGetUser);
+  }
 }
