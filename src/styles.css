@@ -4,3 +4,42 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.container-form {
+    margin-top: 2%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 1px #c1bdbd;
+    padding: 2%;
+}
+.margin-rows{
+    margin-bottom: 1%;
+}
+
+.color-text {
+    color: #fff !important; 
+}
+
+.required-label:after{
+    content: ' *';
+    color: red;
+}
+
+.container-buttons-table {
+    display: flex;
+    justify-content: center;
+    grid-gap: 10px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.tooltip {
+    visibility: visible;
+    top: 42px;
+    left: 150px;
+  }

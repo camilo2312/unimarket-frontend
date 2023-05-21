@@ -1,0 +1,35 @@
+.item-menu {
+    color: #0dcaf0;
+}
+
+.item-menu:hover {
+    color: #fff;
+}
+
+.container-logo {
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    color: #fff;
+}
+
+.img-user {
+    width: 3em;
+    height: 3em;
+    border-radius: 200%;
+    border: none;
+}
+
+.img-user:hover{
+    cursor: pointer;
+}
+
+.container-user {
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+}
+h6 {
+    color: #fff;
+    margin-top: 2%;
+}

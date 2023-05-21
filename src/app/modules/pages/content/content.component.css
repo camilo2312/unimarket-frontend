@@ -1,0 +1,11 @@
+.container-header {
+    background-color: rgb(0 8 66);
+}
+
+.container-content {
+    margin-bottom: 4em;
+}
+
+.container-footer {
+    width: 100%;
+}

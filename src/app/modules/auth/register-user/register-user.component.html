@@ -1,1 +1,102 @@
-<p>register-user works!</p>
+<div class="container container-principal">
+    <div class="container-form">
+        <h3>Registro de usuario</h3>        
+        <form [formGroup]="frmRegister"
+              class="needs-validation"
+              novalidate>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Cédula</label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="code"
+                           [ngClass]="{'is-invalid': getCodeField?.touched && getCodeField?.errors }">
+                    <div *ngIf="getCodeField?.touched && getCodeField?.errors" class="invalid-feedback">
+                        <div *ngIf="getCodeField?.hasError('required')">
+                          El campo cédula es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Nombre</label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="name"
+                           [ngClass]="{'is-invalid': getNameField?.touched && getNameField?.errors }">
+                    <div *ngIf="getNameField?.touched && getNameField?.errors" class="invalid-feedback">
+                        <div *ngIf="getNameField?.hasError('required')">
+                          El campo nombre es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Email</label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="email"
+                           [ngClass]="{'is-invalid': getEmailField?.touched && getEmailField?.errors }">
+                    <div *ngIf="getEmailField?.touched && getEmailField?.errors" class="invalid-feedback">
+                        <div *ngIf="getEmailField?.hasError('required')">
+                          El campo Emailo es requerido
+                        </div>
+                        <div *ngIf="getEmailField?.hasError('email')">
+                          Debe ingresar un correo válido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label">Telefono</label>
+                    <input type="text"
+                           class="form-control"
+                           formControlName="phone">
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Nombre usuario</label>
+                    <input type="text"
+                           class="form-control"
+                           [ngClass]="{'is-invalid': getUserNameField?.touched && getUserNameField?.errors }"
+                           formControlName="userName">
+                    <div *ngIf="getUserNameField?.touched && getUserNameField?.errors" class="invalid-feedback">
+                        <div *ngIf="getUserNameField?.hasError('required')">
+                          El campo nombre de usuario es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-rows">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Contraseña</label>
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password"
+                           [ngClass]="{'is-invalid': getPasswordField?.touched && getPasswordField?.errors }">
+                    <div *ngIf="getPasswordField?.touched && getPasswordField?.errors" class="invalid-feedback">
+                        <div *ngIf="getPasswordField?.hasError('required')">
+                          El campo contraseña es requerido
+                        </div>
+                        <div *ngIf="getPasswordField?.hasError('minlength')">
+                            El campo contraseña debe contener por lo menos 8 caracteres
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <button class="btn btn-primary" (click)="save()">Registarme</button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <app-alert [alert]="alert"></app-alert>
+</div>

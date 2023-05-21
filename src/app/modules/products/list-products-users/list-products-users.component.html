@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="container-title">
+        <h3>Lista de productos</h3>
+        <button class="btn btn-primary" (click)="goToCreateProduct()">
+            <i class="bi bi-save"></i>
+            Crear producto
+        </button>
+    </div>
+    <hr>
+    <div class="container-form">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th class="text-right">Precio</th>
+                            <th class="text-right">Disponibilidad</th>
+                            <th class="text-center">Fecha publicación</th>
+                            <th class="text-center">Fecha límite</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of lstProducts"> 
+                            <td>{{product.codigo}}</td>
+                            <td>{{product.nombre}}</td>
+                            <td class="text-right">{{product.precio | currency}}</td>
+                            <td class="text-right">{{product.disponibilidad}}</td>
+                            <td class="text-center">{{product.fechaPublicacion}}</td>
+                            <td class="text-center">{{product.fechaLimite}}</td>
+                            <td>
+                                <div class="container-buttons-table">
+                                    <button class="btn btn-outline-primary" (click)="editProduct(product)">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger" (click)="deleteProduct(product)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
