@@ -1,5 +1,6 @@
 import { Component , OnInit} from '@angular/core';
-import { TokenService } from './servicios/token.service';
+import { TokenService } from './services/services-http/token.service';
+import { LoginService } from './services/services-http/login.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,10 @@ export class AppComponent implements OnInit{
   title = 'unimarket-frontend';
   isLogged = false;
   email:string = "";
-  constructor(private tokenService:TokenService) { }
+  constructor(private tokenService:TokenService, private loginService: LoginService) { }
   ngOnInit(): void {
       const objeto = this;
-      this.sesionService.currentMessage.subscribe({
+      this.loginService.currentMessage.subscribe({
       next: data => {
       objeto.actualizarSesion(data);
       }
@@ -28,8 +29,8 @@ export class AppComponent implements OnInit{
         this.email = "";
 }
 }
-}
 public logout(){
-this.tokenService.logout();
+  this.tokenService.logout();
+  }
 }
-}
+
