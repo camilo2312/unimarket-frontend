@@ -2,14 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from
 '@angular/router';
 
-
-import { TokenService } from '../servicios/token.service';
-
+import { TokenService } from '../services/services-http/token.service';
 @Injectable({
 providedIn: 'root'
 })
 export class RolesService {
-realRole: string[] = [];
+realRole: string = '';
 constructor(private tokenService: TokenService, private router: Router) { }
 canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 const expectedRole: string[] = next.data["expectedRole"];
