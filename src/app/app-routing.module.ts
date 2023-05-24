@@ -12,6 +12,16 @@ const routes: Routes = [
   },
   { path: '', redirectTo: 'pages/home', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages/not-found' }
+  { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+  { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] }
+  { path: "crear-producto", component: CrearProductoComponent, canActivate: [RolesGuard], data: {
+    expectedRole: ["CLIENTE"] } },
+  { path: "editar-producto/:codigo", component: CrearProductoComponent, canActivate:
+    [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
+  { path: "gestionar-productos", component: GestionProductosComponent, canActivate:
+    [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
+  { path: "revisar-productos", component: RevisarProductosComponent, canActivate: [RolesGuard],
+    data: { expectedRole: ["MODERADOR"] } },
 ];
 
 @NgModule({
