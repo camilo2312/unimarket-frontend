@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Alert } from 'src/app/model/Alert';
+import { DireccionDTO } from 'src/app/model/DireccionDTO';
 import { UserDTO } from 'src/app/model/UserDTO';
 import { ModalService } from 'src/app/services/services-core/modal.service';
+import { AddressService } from 'src/app/services/services-http/address.service';
 import { UserService } from 'src/app/services/services-http/user.service';
 
 @Component({
@@ -23,6 +25,7 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
     private fb: FormBuilder,
     private modalService: ModalService,
     private userService: UserService,
+    private addressService: AddressService,
     private route: Router,
     private elementRef: ElementRef
   ) {}
@@ -34,7 +37,9 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
       email: ['', [Validators.required, Validators.email]],
       phone: [''],
       userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.min(8)]]
+      password: ['', [Validators.required, Validators.min(8)]],
+      street: ['', Validators.required],
+      postalCode: ['', Validators.required]
     });
   }
 
@@ -74,6 +79,14 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
     return this.frmRegister.get('password');
   }
 
+  get getStreetField() {
+    return this.frmRegister.get('street');
+  }
+
+  get getPostalCodeField() {
+    return this.frmRegister.get('postalCode');
+  }
+
   save() {
     if (this.frmRegister.valid) {
       const userDTO = this.mapUser();
@@ -82,11 +95,7 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
       ).subscribe({
         next: data => {
           if (data) {
-            this.alert = new Alert('Registro realizado correctamente', 'success');
-            this.clearForm();
-            setTimeout(() => {
-              this.route.navigate(['/auth/login']);
-            }, 3000);
+            this.createAddress();
           }
         },
         error: error => {
@@ -98,6 +107,26 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
     }
   }
 
+  private createAddress() {
+    const address = this.mapDireccion();
+    this.addressService.createAddress(address).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: data => {
+        if (data) {
+          this.alert = new Alert('Registro realizado correctamente', 'success');
+            this.clearForm();
+            setTimeout(() => {
+              this.route.navigate(['/auth/login']);
+            }, 3000);
+        }
+      },
+      error: error => {
+        this.alert = new Alert(error.error.respuesta, 'danger');
+      }
+    });
+  }
+
   private clearForm() {
     this.frmRegister.reset();
   }
@@ -107,12 +136,22 @@ export class RegisterUserComponent implements OnInit, OnDestroy, AfterViewInit  
       cedula: this.getCodeField?.value,
       nombreCompleto: this.getNameField?.value,
       email: this.getEmailField?.value,
-      telefono: this.getPhoneField?.value,
+      numeroTelefono: this.getPhoneField?.value,
       contrasena: this.getPasswordField?.value,
       nombreUsuario: this.getUserNameField?.value
     };
 
     return user;
+  }
+
+  private mapDireccion(): DireccionDTO {
+    const direccion: DireccionDTO = {
+      cedulaUsuario: this.getCodeField?.value,
+      codigoPostal: this.getPostalCodeField?.value,
+      descripcion: this.getStreetField?.value
+    };
+
+    return direccion;
   }
 
   cancel() {

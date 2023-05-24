@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Alert } from 'src/app/model/Alert';
 import { ProductGetDTO } from 'src/app/model/ProductGetDTO';
+import { BuyService } from 'src/app/services/services-http/buy.service';
 import { FavoriteProductService } from 'src/app/services/services-http/favorite-product.service';
 import { ProductService } from 'src/app/services/services-http/product.service';
 import { TokenService } from 'src/app/services/services-http/token.service';
-import { UserService } from 'src/app/services/services-http/user.service';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private favoriteService: FavoriteProductService,
     private tokenService: TokenService,
+    private buyService: BuyService,
     private route: Router  
   ) {}
 
@@ -51,6 +52,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   addFavorites(product: ProductGetDTO) {
+    if (this.tokenService.isLogged()) {
+      this.addFavoriteUser(product);
+    } else {
+      this.route.navigate(['/auth/login']);
+    }
+  }
+
+  private addFavoriteUser(product: ProductGetDTO) {
     const codeUser = this.tokenService.getCodeUser();
     this.favoriteService.createFavoriteUser(codeUser, product.codigo).pipe(
       takeUntil(this.destroy$)
@@ -70,6 +79,30 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       }
     });
+  }
+
+  addCart(product: ProductGetDTO) {
+    if (this.tokenService.isLogged()) {
+      this.addCartUser(product);
+      this.alert = new Alert('Producto agregado correctamente', 'success');
+      setTimeout(() => {
+        this.alert = null;
+      }, 2000);
+    } else {
+      this.route.navigate(['/auth/login']);
+    }
+  }
+
+  private addCartUser(product: ProductGetDTO) {
+    const productFind = this.buyService.getLstProducts.find(x => x.codigo === product.codigo);
+    if (!productFind) {
+      this.buyService.newProduct(product);
+    } else {
+      this.alert = new Alert('El producto ya se esta agregado en el carrito', 'warning');
+      setTimeout(() => {
+        this.alert =  null;
+      }, 2000);
+    }
   }
 
   viewDetails(code: number) {

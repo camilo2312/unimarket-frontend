@@ -1,5 +1,5 @@
 export interface DetalleCompraDTO {
-    unidades: number;
+    unidades?: number;
     precioProducto: number;
     codigoProducto: number;
 }

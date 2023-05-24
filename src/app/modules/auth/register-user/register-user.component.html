@@ -8,7 +8,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label required-label">Cédula</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            formControlName="code"
                            [ngClass]="{'is-invalid': getCodeField?.touched && getCodeField?.errors }">
                     <div *ngIf="getCodeField?.touched && getCodeField?.errors" class="invalid-feedback">
@@ -22,7 +22,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label required-label">Nombre</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            formControlName="name"
                            [ngClass]="{'is-invalid': getNameField?.touched && getNameField?.errors }">
                     <div *ngIf="getNameField?.touched && getNameField?.errors" class="invalid-feedback">
@@ -36,7 +36,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label required-label">Email</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            formControlName="email"
                            [ngClass]="{'is-invalid': getEmailField?.touched && getEmailField?.errors }">
                     <div *ngIf="getEmailField?.touched && getEmailField?.errors" class="invalid-feedback">
@@ -53,7 +53,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label">Telefono</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            formControlName="phone">
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label required-label">Nombre usuario</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            [ngClass]="{'is-invalid': getUserNameField?.touched && getUserNameField?.errors }"
                            formControlName="userName">
                     <div *ngIf="getUserNameField?.touched && getUserNameField?.errors" class="invalid-feedback">
@@ -75,7 +75,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="form-label required-label">Contraseña</label>
                     <input type="password"
-                           class="form-control"
+                           class="form-control form-control-sm"
                            formControlName="password"
                            [ngClass]="{'is-invalid': getPasswordField?.touched && getPasswordField?.errors }">
                     <div *ngIf="getPasswordField?.touched && getPasswordField?.errors" class="invalid-feedback">
@@ -84,7 +84,33 @@
                         </div>
                         <div *ngIf="getPasswordField?.hasError('minlength')">
                             El campo contraseña debe contener por lo menos 8 caracteres
-                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Dirección</label>
+                    <input class="form-control form-control-sm"
+                           type="text"
+                           formControlName="street"
+                           [ngClass]="{'is-invalid': getStreetField?.touched && getStreetField?.errors }">
+                    <div *ngIf="getStreetField?.touched && getStreetField?.errors" class="invalid-feedback">
+                        <div *ngIf="getStreetField?.hasError('required')">
+                          El campo dirección es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label required-label">Código postal</label>
+                    <input class="form-control form-control-sm"
+                           type="text"
+                           formControlName="postalCode"
+                           [ngClass]="{'is-invalid': getPostalCodeField?.touched && getPostalCodeField?.errors }">
+                    <div *ngIf="getPostalCodeField?.touched && getPostalCodeField?.errors" class="invalid-feedback">
+                        <div *ngIf="getPostalCodeField?.hasError('required')">
+                          El campo código postal es requerido
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,38 @@
+img {
+    width: 80px;
+}
+
+.container-quantity {
+    width: 150px;
+}
+
+.container-quantity > input {
+    text-align: right;
+}
+
+
+.container-button {
+    display: flex;
+    justify-content: center;
+}
+
+.container-table {
+    max-height: 50vh;
+    overflow: auto;
+    margin-bottom: 2%;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.container-total {
+    display: flex;
+    justify-content: flex-end;
+    grid-gap: 20px;
+    align-items: baseline;
+}
+
+.container-btn-buy {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

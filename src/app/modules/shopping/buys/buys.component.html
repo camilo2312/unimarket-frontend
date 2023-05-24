@@ -1,0 +1,74 @@
+<app-alert [alert]="alert"></app-alert>
+<div class="container" *ngIf="lstProducts.length > 0">
+    <h3>Carrito de compras</h3>
+    <hr>
+    <div class="container-form">
+        <div class="container-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Producto</th>
+                        <th class="text-right">Precio</th>
+                        <th class="text-right">Cantidad</th>
+                        <th class="text-right">Total producto</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of lstProducts">
+                        <td>
+                            <img [src]="product.imagenes[0].url">
+                        </td>
+                        <td>{{product.nombre}}</td>
+                        <td class="text-right">{{product.precio | currency}}</td>
+                        <td class="container-quantity">
+                            <input class="form-control form-control-sm" type="number" [(ngModel)]="product.quantity" (input)="calculatePrice(product)">
+                        </td>
+                        <td class="text-right">{{(product.totalProduct ? product.totalProduct : 0) | currency}}</td>
+                        <td>
+                            <div class="container-button">
+                                <button class="btn btn-outline-danger btn-sm" (click)="deleteProduct(product)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container-total">
+            <h5>Total: </h5>
+            <span>{{totalOrder | currency}}</span>
+        </div>
+        <form [formGroup]="frmBuys">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="form-label">Método de pago</label>
+                    <select class="form-select" formControlName="paymentMethod">
+                        <option value="EFECTIVO">Efectivo</option>
+                        <option value="TRANSFERENCIA">Transferencia</option>
+                        <option value="EFECTY">Efecty</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container-btn-buy">
+                    <button class="btn btn-primary" (click)="save()">
+                        <i class="bi bi-bag"></i>
+                        Comprar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container" *ngIf="lstProducts.length === 0">
+    <h3>Carrito de compras</h3>
+    <hr>
+    <div class="alert alert-warning d-flex align-items-center container-warning" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            <h2>No tiene productos agregados en el carrito</h2>
+        </div>
+    </div>
+</div>

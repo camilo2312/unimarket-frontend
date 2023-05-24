@@ -43,3 +43,18 @@
     top: 42px;
     left: 150px;
   }
+
+  .success {
+      color: #198754;
+      font-weight: bold;
+  }
+
+  .warning {
+      color: yellow;
+      font-weight: bold;
+  }
+
+  .error {
+      color: red;
+      font-weight: bold;
+  }

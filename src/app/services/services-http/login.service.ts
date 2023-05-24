@@ -19,4 +19,9 @@ export class LoginService {
     const urlLogin = `${this.urlApi}login`;
     return this.http.post<MensajeDTO>(urlLogin, sesionDTO);
   }
+
+  resetPassword(email: string): Observable<MensajeDTO> {
+    const urlResetPassword = `${this.urlApi}reestablecerContrasena/${email}`;
+    return this.http.get<MensajeDTO>(urlResetPassword);
+  }
 }

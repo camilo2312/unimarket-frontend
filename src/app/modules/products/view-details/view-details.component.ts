@@ -65,6 +65,28 @@ export class ViewDetailsComponent implements OnInit {
   }
 
   addFavorites(product: ProductGetDTO) {
+    if (this.tokenService.isLogged()) {
+      this.addFavoriteUser(product);
+    } else {
+      this.route.navigate(['/auth/login']);
+    }
+  }
+
+  addCart(product: ProductGetDTO) {
+    if (this.tokenService.isLogged()) {
+      this.addCartUser(product);
+    } else {
+      this.route.navigate(['/auth/login']);
+    }
+  }
+
+  private addCartUser(product: ProductGetDTO) {
+    if (product) {
+
+    }
+  }
+
+  private addFavoriteUser(product: ProductGetDTO) {
     const codeUser = this.tokenService.getCodeUser();
     this.favoriteService.createFavoriteUser(codeUser, product.codigo).pipe(
       takeUntil(this.destroy$)
@@ -84,11 +106,6 @@ export class ViewDetailsComponent implements OnInit {
 
       }
     });
-  }
-
-  isUser() {
-    const role = this.tokenService.getRole();
-    return role === 'CLIENTE';
   }
 
   isModerator() {

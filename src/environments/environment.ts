@@ -9,7 +9,10 @@ export const environment = {
   PRODUCT: 'productos/',
   IMAGES: 'imagenes/',
   USER: 'usuario/',
-  FAVORITE_USER: 'productos-favoritos/'
+  FAVORITE_USER: 'productos-favoritos/',
+  BUY: 'compra/',
+  ADDRESS: 'direccion/',
+  MODERATOR: 'moderador/'
 };
 
 /*

@@ -4,11 +4,11 @@
     padding: 1em;
 }
 
-.container-title{
+.container-actions{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2em;
     align-items: center;
+    grid-gap: 20px;
 }
 
 .color {

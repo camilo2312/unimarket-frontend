@@ -1,0 +1,38 @@
+<div class="container">
+    <h3>Mis compras</h3>
+    <hr>
+    <div class="container-form">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Fecha</th>
+                    <th>Medio de pago</th>
+                    <th class="text-right">Total</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let buy of lstBuys">
+                    <td>{{buy.codigoCompra}}</td>
+                    <td>{{buy.fechaCreacion | date}}</td>
+                    <td>{{buy.medioPago}}</td>
+                    <td class="text-right">{{buy.precioTotal | currency}}</td>
+                    <td class="text-center" [ngClass]="{'success': buy.estadoCompra.toString() === 'APROBADA', 'warning': buy.estadoCompra.toString() === 'CANCELADA', 'error': buy.estadoCompra.toString() === 'RECHAZADA'}">
+                        {{buy.estadoCompra}}
+                    </td>
+                    <td>
+                        <div class="container-btn">
+                            <button class="btn btn-outline-primary btn-sm"
+                                    placement="bottom" 
+                                    ngbTooltip="Ver detalle">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

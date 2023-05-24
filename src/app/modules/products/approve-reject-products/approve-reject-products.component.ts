@@ -5,6 +5,7 @@ import { Alert } from 'src/app/model/Alert';
 import { Estado } from 'src/app/model/Estado';
 import { ProductGetDTO } from 'src/app/model/ProductGetDTO';
 import { ModalService } from 'src/app/services/services-core/modal.service';
+import { ModeratorService } from 'src/app/services/services-http/moderator.service';
 import { ProductService } from 'src/app/services/services-http/product.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class ApproveRejectProductsComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
+    private moderatorService: ModeratorService,
     private route: Router,
     private modalService: ModalService
   ) {}
@@ -50,8 +52,8 @@ export class ApproveRejectProductsComponent implements OnInit, OnDestroy {
 
   approveProduct(product: ProductGetDTO) {
     this.modalService.openModal(
-      'Actualizar',
-      '¿Está sgeuro de probar el producto?'
+      'Aprobar',
+      '¿Está sgeuro de aprobar el producto?'
     ).result
     .then((response) => {
       if (response) {
@@ -62,7 +64,7 @@ export class ApproveRejectProductsComponent implements OnInit, OnDestroy {
 
   rejectProduct(product: ProductGetDTO) {
     this.modalService.openModal(
-      'Actualizar',
+      'Rechazar',
       '¿Está sgeuro de rechazar el producto?'
     ).result
     .then((response) => {
@@ -73,7 +75,7 @@ export class ApproveRejectProductsComponent implements OnInit, OnDestroy {
   }
 
   private updatestateProduct(codeProduct: number, state: Estado) {
-    this.productService.updateProductState(codeProduct, state).pipe(
+    this.moderatorService.updateProductState(codeProduct, state).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: data => {

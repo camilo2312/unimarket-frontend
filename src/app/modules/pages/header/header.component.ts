@@ -43,4 +43,8 @@ export class HeaderComponent implements OnInit {
   getEmail(): string {
     return this.tokenService.getEmail();
   }
+
+  gotToCart() {
+    this.route.navigate(['/pages/shopping/cart']);
+  }
 }

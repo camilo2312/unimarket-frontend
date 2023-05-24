@@ -8,7 +8,11 @@
                   <h5 class="card-title">{{product.nombre}}</h5>
                   <h6 class="card-text">{{product.precio | currency}}</h6>
                   <div class="container-buttons">
-                    <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Añadir al carrito">
+                    <button type="button"
+                            class="btn btn-primary"
+                            placement="bottom"
+                            ngbTooltip="Añadir al carrito"
+                            (click)="addCart(product)">
                         <i class="bi bi-cart"></i>
                     </button>
                     <button class="btn btn-danger"

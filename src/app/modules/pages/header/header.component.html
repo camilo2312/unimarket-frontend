@@ -10,12 +10,12 @@
         <!-- Menu general para los usuarios -->
 
         <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="!tokenService.isLogged() || isUser()">Inicio</a></li>
-        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="!tokenService.isLogged()">Productos</a></li>
+        <!-- <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="!tokenService.isLogged()">Productos</a></li> -->
 
         <!-- Menu para los usuarios -->
 
         <li><a routerLink="/pages/products/list-products-user" class="nav-link px-2 item-menu" *ngIf="isUser()">Mis productos</a></li>
-        <li><a routerLink="/pages/home" class="nav-link px-2 item-menu" *ngIf="isUser()">Mis compras</a></li>
+        <li><a routerLink="/pages/shopping/list-buys" class="nav-link px-2 item-menu" *ngIf="isUser()">Mis compras</a></li>
         <li><a routerLink="/pages/products/favorites" class="nav-link px-2 item-menu" *ngIf="isUser()">Favoritos</a></li>
 
         <!-- Menu para los moderadores -->
@@ -34,7 +34,18 @@
             <img class="img-user" src="assets/images/user.png"  data-bs-toggle="dropdown" *ngIf="isUser()">
             <img class="img-user" src="assets/images/moderator.png" data-bs-toggle="dropdown" *ngIf="isModerator()">
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+              <li>
+                <a class="dropdown-item" (click)="gotToCart()">
+                  <i class="bi bi-cart"></i>
+                  Carrito
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logout()">
+                  <i class="bi bi-box-arrow-left"></i>
+                  Cerrar sesión
+                </a>
+              </li>
             </ul>
           </div>
         </div>

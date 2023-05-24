@@ -12,4 +12,6 @@ export interface ProductGetDTO {
     imagenes: Array<Image>;
     categorias: Array<string>;
     seleccion?: boolean;
+    quantity?: number;
+    totalProduct?: number;
 }
