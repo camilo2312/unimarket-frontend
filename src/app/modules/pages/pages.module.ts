@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     PagesRoutingModule,
     NgbTooltipModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

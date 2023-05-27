@@ -45,8 +45,7 @@ export class TokenService {
     const token = this.getToken();
     if (token) {
       const values = this.decodePayload(token);
-      const valuesUser = values.sub.split(';');
-      return valuesUser[0];
+      return values.sub;
     }
 
     return '';
@@ -56,8 +55,7 @@ export class TokenService {
     const token = this.getToken();
     if (token) {
       const values = this.decodePayload(token);
-      const valuesUser = values.sub.split(';');
-      return valuesUser[1];
+      return values.sub_code;
     }
 
     return '';

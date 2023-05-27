@@ -12,7 +12,8 @@ export const environment = {
   FAVORITE_USER: 'productos-favoritos/',
   BUY: 'compra/',
   ADDRESS: 'direccion/',
-  MODERATOR: 'moderador/'
+  MODERATOR: 'moderador/',
+  COMMENT: 'comentario/'
 };
 
 /*

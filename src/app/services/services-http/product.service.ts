@@ -59,4 +59,19 @@ export class ProductService {
     const urlUpdateState = `${this.urlApi}actualizarEstado/${codeProduct}/${Estado[state]}`;
     return this.http.get<MensajeDTO>(urlUpdateState);
   }
+
+  searchProductName(name: string): Observable<MensajeDTO> {
+    const urlSearch = `${this.urlApi}buscarProductoNombre/${name}`;
+    return this.http.get<MensajeDTO>(urlSearch);
+  }
+
+  searchProductCategory(category: string): Observable<MensajeDTO> {
+    const urlSearch = `${this.urlApi}buscarProductoCategoria/${category}`;
+    return this.http.get<MensajeDTO>(urlSearch);
+  }
+
+  searchPricesProducts(startPrice: number, endPrice: number): Observable<MensajeDTO> {
+    const urlSearch = `${this.urlApi}buscarProductoPrecios/${startPrice}/${endPrice}`;
+    return this.http.get<MensajeDTO>(urlSearch);
+  }
 }

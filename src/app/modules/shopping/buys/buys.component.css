@@ -36,3 +36,7 @@ img {
     justify-content: flex-end;
     align-items: flex-end;
 }
+
+.size-icon {
+    font-size: 25px;
+}

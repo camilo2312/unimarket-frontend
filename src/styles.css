@@ -45,16 +45,16 @@
   }
 
   .success {
-      color: #198754;
+      color: #198754 !important;
       font-weight: bold;
   }
 
   .warning {
-      color: yellow;
+      color: yellow !important;
       font-weight: bold;
   }
 
   .error {
-      color: red;
+      color: red !important;
       font-weight: bold;
   }

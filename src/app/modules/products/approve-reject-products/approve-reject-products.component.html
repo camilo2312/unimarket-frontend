@@ -4,18 +4,17 @@
     <div class="container-form">
         <table class="table table-striped">
             <thead>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th class="text-right">Precio</th>
                 <th class="text-center">Imagen</th>
                 <th class="text-center">Fecha publicación</th>
                 <th class="text-center">Fecha límite</th>
+                <th class="text-center">Estado</th>
                 <th class="text-center">Ver detalle</th>
                 <th class="text-center">Acciones</th>
             </thead>
             <tbody>
-                <tr *ngFor="let product of lstProducts"> 
-                    <td>{{product.codigo}}</td>
+                <tr *ngFor="let product of lstProducts">
                     <td>{{product.nombre}}</td>
                     <td class="text-right">{{product.precio | currency}}</td>
                     <td class="container-img">
@@ -23,6 +22,9 @@
                     </td>
                     <td class="text-center">{{product.fechaPublicacion}}</td>
                     <td class="text-center">{{product.fechaLimite}}</td>
+                    <td class="text-center" [ngClass]="{'warning': product.estado.toString() === 'INACTIVO', 'error': product.estado.toString() === 'RECHAZADO', 'success': product.estado.toString() === 'AUTORIZADO'}">
+                        {{product.estado}}
+                    </td>
                     <td>
                         <div class="container-view">
                             <button class="btn btn-outline-primary btn-sm" (click)="viewDetails(product)">

@@ -1,3 +1,4 @@
+import { Estado } from "./Estado";
 import { Image } from "./Image";
 
 export interface ProductGetDTO {
@@ -9,9 +10,11 @@ export interface ProductGetDTO {
     fechaLimite: Date;
     fechaPublicacion: Date;
     vendedor: string;
+    nombreVendedor?: string;
     imagenes: Array<Image>;
     categorias: Array<string>;
     seleccion?: boolean;
     quantity?: number;
     totalProduct?: number;
+    estado: Estado;
 }

@@ -23,4 +23,9 @@ export class UserService {
     const urlGetUser = `${this.urlApi}${code}`;
     return this.http.get<MensajeDTO>(urlGetUser);
   }
+
+  changePassword(code: string, password: string): Observable<MensajeDTO> {
+    const urlChangePass = `${this.urlApi}cambiarContrasena/${code}/${password}`;
+    return this.http.get<MensajeDTO>(urlChangePass);
+  }
 }

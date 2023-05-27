@@ -12,3 +12,15 @@ img {
     justify-content: center;
     align-items: center;
 }
+
+.warning-state {
+    color: rgb(231, 231, 57);
+}
+
+.error-state {
+    color: red;
+}
+
+.success-state {
+    color: green;
+}

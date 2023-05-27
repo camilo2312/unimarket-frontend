@@ -34,7 +34,7 @@
             <img class="img-user" src="assets/images/user.png"  data-bs-toggle="dropdown" *ngIf="isUser()">
             <img class="img-user" src="assets/images/moderator.png" data-bs-toggle="dropdown" *ngIf="isModerator()">
             <ul class="dropdown-menu">
-              <li>
+              <li *ngIf="isUser()">
                 <a class="dropdown-item" (click)="gotToCart()">
                   <i class="bi bi-cart"></i>
                   Carrito
