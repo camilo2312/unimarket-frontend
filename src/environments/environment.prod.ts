@@ -1,5 +1,13 @@
 export const environment = {
   production: true,
-  URLSERVICIO: 'http://localhost:8080/api/',
-  LOGIN: 'auth/login'
+  URLSERVICIO: 'proyecto-programacion-avanzada-production.up.railway.app/api/',
+  LOGIN: 'auth/',
+  PRODUCT: 'productos/',
+  IMAGES: 'imagenes/',
+  USER: 'usuario/',
+  FAVORITE_USER: 'productos-favoritos/',
+  BUY: 'compra/',
+  ADDRESS: 'direccion/',
+  MODERATOR: 'moderador/',
+  COMMENT: 'comentario/'
 };
