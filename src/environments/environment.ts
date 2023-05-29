@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URLSERVICIO: 'proyecto-programacion-avanzada-production.up.railway.app/api/',
+  URLSERVICIO: 'https://proyecto-programacion-avanzada-production.up.railway.app/api/',
   LOGIN: 'auth/',
   PRODUCT: 'productos/',
   IMAGES: 'imagenes/',
