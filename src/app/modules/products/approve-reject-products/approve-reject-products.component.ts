@@ -80,9 +80,8 @@ export class ApproveRejectProductsComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: data => {
         if (data && data.respuesta) {
-          const index = this.lstProducts.findIndex(x => x.codigo === codeProduct);
-          this.lstProducts.splice(index, 1);
           this.alert = new Alert('Producto actualizado correctamente', 'success');
+          this.getData();
         }
       },
       error: error => {
