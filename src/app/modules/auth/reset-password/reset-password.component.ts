@@ -49,7 +49,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   get getConfirmPassField() {
-    return this.frmReset.get('newPassword');
+    return this.frmReset.get('confirmPassword');
   }
 
   save() {

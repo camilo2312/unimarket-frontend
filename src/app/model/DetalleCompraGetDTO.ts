@@ -4,4 +4,5 @@ export interface DetalleCompraGetDTO {
     precioProducto: number;
     codigoCompra: number;
     codigoProducto: number;
+    nombreProducto?: string;
 }
