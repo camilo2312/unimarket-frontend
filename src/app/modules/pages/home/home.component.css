@@ -54,3 +54,8 @@ h6 {
 .color-icon {
     color: blue;
 }
+
+img {
+    width: 100%;
+    height: 15em;
+}

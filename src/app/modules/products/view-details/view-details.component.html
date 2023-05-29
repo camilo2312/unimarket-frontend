@@ -74,7 +74,7 @@
     <div>
       <h3>Lista de comentarios</h3>
       <hr>
-      <div class="row container-principal-comment" *ngIf="isLogged()">
+      <div class="row container-principal-comment">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-comment" *ngFor="let comment of lstComments">
           <div class="container-date">
             <h5>{{comment.nombreUsuario}}</h5>
